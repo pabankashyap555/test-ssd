@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"/><title>Election Demo</title></head>
+<body>
+  <header>
+    <h1>Election Login — Demo</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a>
+      {% if username %}
+        <span>Hi {{ username }}</span> | <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a> | <a href="{{ url_for('register') }}">Register</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>
+    {% endif %}
+  {% endwith %}
+
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>
